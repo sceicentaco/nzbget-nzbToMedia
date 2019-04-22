@@ -5,11 +5,9 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Nzbget-nzbToMedia" \
+      org.label-schema.name="nzbget-nzbtomedia" \
       org.label-schema.description="Nzbget container with dependencies for nzbToMedia" \
-      org.label-schema.url="https://git.awfulbliss.net/sciencetaco/nzbget-docker" \
-      org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://git.awfulbliss.net/sciencetaco/nzbget-docker" \
+      org.label-schema.url="https://github.com/sciencetaco/nzbget-nzbToMedia/" \
       org.label-schema.vendor="sciencetaco" \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
@@ -17,14 +15,13 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN \
   pacman -Sy && \
   pacman -S --noconfirm \
-            base-devel \
-            libxml2 \
-            git \
-            vi \
-            procps-ng \
-            gcc \
-            openssl \
-            cmake && \
+    base-devel \
+    libxml2 \
+    git \
+    vi \
+    gcc \
+    openssl \
+    cmake && \
   echo "**** build nzbget ****" && \
  if [ -z ${NZBGET_RELEASE+x} ]; then \
 	NZBGET_RELEASE=$(curl -sX GET "https://api.github.com/repos/nzbget/nzbget/releases/latest" \
@@ -69,15 +66,15 @@ RUN \
  echo "**** install packages ****" && \
  pacman -Sy && \
  pacman -S --noconfirm \
-	curl \
-	libxml2 \
-	openssl \
-	p7zip \
-	python2 \
-	python2-pip \
-	unrar \
+    curl \
+    libxml2 \
+    openssl \
+    p7zip \
+    python2 \
+    python2-pip \
+    unrar \
     tar \
-   	par2cmdline \
+    par2cmdline \
     procps-ng \
     wget && \
 
