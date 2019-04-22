@@ -77,7 +77,6 @@ RUN \
 	python2-pip \
 	unrar \
     tar \
-    p7zip \
    	par2cmdline \
     procps-ng \
     wget && \
