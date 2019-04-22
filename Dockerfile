@@ -89,3 +89,5 @@ COPY root/ /
 # ports and volumes
 VOLUME /config /downloads
 EXPOSE 6789
+
+CMD ["/usr/bin/bash", "/app/nzbget/nzbget -s -c /config/nzbget.conf -o OutputMode=log"]
