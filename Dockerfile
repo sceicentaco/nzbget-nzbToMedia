@@ -44,6 +44,10 @@ RUN \
  cp /app/nzbget/share/nzbget/nzbget.conf /app/nzbget/webui/nzbget.conf.template && \
  ln -s /usr/bin/7za /app/nzbget/7za && \
  ln -s /usr/bin/unrar /app/nzbget/unrar && \
+ ln -s /usr/bin/par2 /app/nzbget/par2 && \
+ ln -s /usr/bin/par2create /app/nzbget/par2create && \
+ ln -s /usr/bin/par2repair /app/nzbget/par2repair && \
+ ln -s /usr/bin/par2verify /app/nzbget/par2verify && \
  cp /nzbget/pubkey.pem /app/nzbget/pubkey.pem && \
  curl -o \
 	/app/nzbget/cacert.pem -L \
