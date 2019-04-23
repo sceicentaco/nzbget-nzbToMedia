@@ -2,7 +2,6 @@ FROM archlinux/base:latest as buildstage
 MAINTAINER sciencetaco
 
 ARG BUILD_DATE
-ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="nzbget-nzbtomedia" \
@@ -19,14 +18,9 @@ RUN \
     libxml2 \
     git \
     cmake && \
- if [ -z ${NZBGET_RELEASE+x} ]; then \
-	NZBGET_RELEASE=$(curl -sX GET "https://api.github.com/repos/nzbget/nzbget/releases/latest" \
-	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
- fi && \
  mkdir -p /app/nzbget && \
  git clone https://github.com/nzbget/nzbget.git nzbget && \
  cd nzbget/ && \
- git checkout ${NZBGET_RELEASE} && \
  git cherry-pick -n fa57474d && \
  ./configure \
 	bindir='${exec_prefix}' && \
@@ -90,4 +84,4 @@ COPY root/ /
 VOLUME /config /downloads
 EXPOSE 6789
 
-CMD ["/usr/bin/bash", "/app/nzbget/nzbget -s -c /config/nzbget.conf -o OutputMode=log"]
+ENTRYPOINT [ "sh", "-c", "/app/nzbget/nzbget -s -c /config/nzbget.conf -o OutputMode=log" ]
